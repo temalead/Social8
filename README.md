@@ -1,1 +1,1 @@
-"# Social8" 
+This app like the clone facebook but users in this app are pupils from our school
