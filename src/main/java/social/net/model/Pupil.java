@@ -20,6 +20,9 @@ public class Pupil {
     private Long id;
     private String firstName;
     private String LastName;
+
+    @OneToMany(mappedBy = "pupils",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "studyClass_id")
     private StudyClass studyClass;
 
     private Set<Pupil> subscribers;
