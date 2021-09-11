@@ -5,10 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Set;
 
 @Component
@@ -23,5 +20,6 @@ public class StudyClass {
 
     private Integer numberOfClass;
 
+    @OneToMany(mappedBy = "pupil_id")
     private Set<Pupil> pupilsInStudyClass;
 }
