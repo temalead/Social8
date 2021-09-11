@@ -20,8 +20,6 @@ public class Pupil {
     private Long id;
     private String firstName;
     private String LastName;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "studyClass_id")
     private StudyClass studyClass;
 
     private Set<Pupil> subscribers;
