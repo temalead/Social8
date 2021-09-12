@@ -5,10 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Set;
 
 @Component
@@ -16,6 +13,7 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
+@Table(name = "study_class")
 public class StudyClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +21,7 @@ public class StudyClass {
 
     private Integer numberOfClass;
 
-    private Set<Pupil> pupilsInStudyClass;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Set<Pupil> pupils;
 }
+

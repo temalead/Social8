@@ -1,9 +1,13 @@
 <template>
-  <div></div>
+  <div>
+    <v-card>123</v-card>
+  </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Main",
+};
 </script>
 
 <style>
