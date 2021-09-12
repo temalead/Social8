@@ -24,8 +24,8 @@ public class Pupil {
 
     private String password;
 
-    @OneToMany(mappedBy = "pupils",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "study_class_id")
+    @ManyToOne
+    @JoinColumn(name = "study_class")
     private StudyClass studyClass;
 
     private Role role;
