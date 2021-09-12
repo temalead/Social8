@@ -14,6 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "pupil")
 public class Pupil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,7 @@ public class Pupil {
     private String LastName;
 
     @OneToMany(mappedBy = "pupils",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "studyClass_id")
+    @JoinColumn(name = "study_class_id")
     private StudyClass studyClass;
 
     private Set<Pupil> subscribers;
