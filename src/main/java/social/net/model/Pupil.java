@@ -22,12 +22,11 @@ public class Pupil {
     private String firstName;
     private String LastName;
 
+    private String password;
+
     @OneToMany(mappedBy = "pupils",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "study_class_id")
     private StudyClass studyClass;
 
-    private Set<Pupil> subscribers;
-    private Set<Pupil> subscriptions;
-
-
+    private Role role;
 }

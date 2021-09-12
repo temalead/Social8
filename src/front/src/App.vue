@@ -1,10 +1,17 @@
 <template>
-  <router-view />
+    <div>
+        <hello-world></hello-world>
+    </div>
 </template>
 <script>
-export default {
-  name: "App",
-};
+    import HelloWorld from "./views/HelloWorld";
+
+    export default {
+        name: "App",
+        components: {
+            HelloWorld
+        }
+    };
 </script>
 
 <style>
