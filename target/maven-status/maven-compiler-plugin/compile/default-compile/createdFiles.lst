@@ -1,0 +1,6 @@
+social\net\controller\SimpleController.class
+social\net\model\StudyClass.class
+social\net\model\Pupil.class
+social\net\config\SecurityConfig.class
+social\net\Main.class
+social\net\model\Role.class
