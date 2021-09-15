@@ -19,7 +19,7 @@ public class Pupil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private
+    private String login;
     private String firstName;
     private String LastName;
 

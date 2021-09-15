@@ -21,7 +21,8 @@ public class StudyClass {
 
     private Integer numberOfClass;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "id")
     private Set<Pupil> pupils;
 }
 

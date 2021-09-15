@@ -1,6 +1,7 @@
 <template>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <h1>Hellofsdfs</h1>
 =======
   <div>
@@ -8,6 +9,8 @@
   </div>
 >>>>>>> 04ca1c4909ac0f23a3455fc2137105bade4522d6
 =======
+=======
+>>>>>>> 2deea0abf6dbd4f2548054cd90baf2a369a705f8
   <v-row class="align-center justify-center">
     <v-col cols="6">
       <form>
@@ -35,7 +38,10 @@
       </form>
     </v-col>
   </v-row>
+<<<<<<< HEAD
 >>>>>>> 3fce26ff5d9b76ae72b781605dcde97ec77ad5ea
+=======
+>>>>>>> 2deea0abf6dbd4f2548054cd90baf2a369a705f8
 </template>
 
 <script>
