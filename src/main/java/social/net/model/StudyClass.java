@@ -22,7 +22,7 @@ public class StudyClass {
     private Integer numberOfClass;
 
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "id",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Pupil> pupils;
 }
 
