@@ -14,7 +14,6 @@ import java.util.Set;
 
 @Component
 @Entity
-@NoArgsConstructor
 @Table(name = "pupil")
 public class Pupil implements UserDetails {
     @Id
@@ -31,6 +30,10 @@ public class Pupil implements UserDetails {
     private StudyClass studyClass;
 
     private Role role;
+
+
+    public Pupil() {
+    }
 
     public Long getId() {
         return id;
@@ -117,4 +120,6 @@ public class Pupil implements UserDetails {
     public void setRole(Role role) {
         this.role = role;
     }
+
+
 }
