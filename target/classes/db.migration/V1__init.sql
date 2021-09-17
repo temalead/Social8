@@ -1,5 +1,6 @@
 create table pupil(
     id int8 primary key,
+    login varchar(15),
     first_name varchar(10),
     last_name varchar(25),
     password varchar(255)
