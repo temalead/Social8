@@ -1,6 +1,4 @@
-<template>
-  <hello-world />
-</template>
+<template></template>
 
 <script>
 export default {
@@ -9,3 +7,5 @@ export default {
   components: {},
 };
 </script>
+<style scoped>
+</style>

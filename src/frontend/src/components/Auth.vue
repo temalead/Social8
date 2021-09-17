@@ -1,31 +1,54 @@
 <template>
-  <v-row class="align-center justify-center">
-    <v-col cols="6">
-      <form>
-        <v-text-field
-          v-model="login"
-          :error-messages="loginErrors"
-          :counter="15"
-          label="Login"
-          required
-          @input="$v.login.$touch()"
-          @blur="$v.login.$touch()"
-        ></v-text-field>
-        <v-text-field
-          v-model="password"
-          :error-messages="passwordErrors"
-          label="Password"
-          required
-          @input="$v.password.$touch()"
-          @blur="$v.password.$touch()"
-          class="mb-2"
-        ></v-text-field>
-
-        <v-btn class="mr-4" @click="submit"> Войти </v-btn>
-        <v-btn @click="clear"> Очистить </v-btn>
-      </form>
-    </v-col>
-  </v-row>
+  <v-container class="d-flex flex-column">
+    <v-row class="align-center justify-center">
+      <div class="small-logo-container">LOGO</div>
+    </v-row>
+    <v-row>
+      <v-col class="ml-4 mr-4">
+        <form>
+          <v-text-field
+            v-model="login"
+            :error-messages="loginErrors"
+            :counter="15"
+            label="Phone number or email"
+            required
+            @input="$v.login.$touch()"
+            @blur="$v.login.$touch()"
+          ></v-text-field>
+          <v-text-field
+            v-model="password"
+            :error-messages="passwordErrors"
+            label="Password"
+            required
+            @input="$v.password.$touch()"
+            @blur="$v.password.$touch()"
+            class="mb-2"
+          ></v-text-field>
+          <v-row>
+            <v-btn
+              class="mt-9 button"
+              color="#f6f6f6"
+              width="100%"
+              @click="submit"
+              disabled
+            >
+              LOG IN
+            </v-btn>
+          </v-row>
+          <v-row>
+            <v-btn class="button second" color="#f6f6f6" width="100%">
+              create new account
+            </v-btn>
+          </v-row>
+          <v-row class="d-flex justify-center">
+            <v-btn class="button second text-caption" color="error" text
+              >Forgot Password?
+            </v-btn>
+          </v-row>
+        </form>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -84,16 +107,34 @@ export default {
     submit() {
       this.$v.$touch();
     },
-    clear() {
-      this.$v.$reset();
-      this.login = "";
-      this.password = "";
-      this.select = null;
-      this.checkbox = false;
-    },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.button {
+  border-radius: 16px;
+}
+.second {
+  margin-top: 12px;
+}
+.small-logo-container {
+  height: 55vh;
+}
+/* .logo {
+  position: absolute;
+  width: 104px;
+  height: 104px;
+  left: 128px;
+  top: 260px;
+  background: url(image.png);
+}
+
+.image {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+} */
 </style>
