@@ -25,7 +25,7 @@ public class PupilService implements UserDetailsService {
 
 
     public boolean registerPupil(Pupil pupil) {
-        Pupil pupilFromDb = pupilRepo.findByLogin(pupil.getLogin());
+        Pupil pupilFromDb = pupilRepo.findByEmail(pupil.getEmail());
         if (pupilFromDb==null){
             pupil.setPassword(passwordEncoder.encode(pupil.getPassword()));
             pupilRepo.save(pupil);
@@ -36,7 +36,7 @@ public class PupilService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Pupil byLogin = pupilRepo.findByLogin(s);
+        Pupil byLogin = pupilRepo.findByEmail(s);
         if (byLogin ==null){
             try {
                 throw new Exception("User not found");

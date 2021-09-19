@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Collection;
 import java.util.Set;
 
@@ -19,11 +20,15 @@ public class Pupil implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String login;
     private String firstName;
     private String LastName;
 
     private String password;
+    @Email
+    private String email;
+    private boolean active;
+
+    private String activationCode;
 
     @ManyToOne
     @JoinColumn(name = "study_class_id")
@@ -41,14 +46,6 @@ public class Pupil implements UserDetails {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getFirstName() {
@@ -121,5 +118,27 @@ public class Pupil implements UserDetails {
         this.role = role;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
 }

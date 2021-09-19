@@ -1,9 +1,10 @@
 create table pupil(
     id int8 primary key,
-    login varchar(15),
     first_name varchar(10),
     last_name varchar(25),
-    password varchar(255)
+    password varchar(255),
+    email varchar(255),
+
 );
 create table study_class(
     id int 8 primary key,
