@@ -2,7 +2,6 @@ package social.net.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import social.net.exceptions.RegistrationException;
 import social.net.model.Pupil;
 import social.net.service.PupilService;
 
@@ -28,7 +27,7 @@ public class RegistrationController {
             ) throws Exception {
         if (!pupilService.registerPupil(pupil)){
             response.sendRedirect("/registration");
-            return null;
+            return pupil;
         }
         response.sendRedirect("/");
         return pupil;
