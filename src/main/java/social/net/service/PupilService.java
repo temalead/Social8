@@ -7,9 +7,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import social.net.model.Pupil;
+import social.net.model.Role;
 import social.net.repo.PupilRepo;
 
 import javax.xml.ws.Response;
+import java.util.UUID;
 
 @Service
 public class PupilService implements UserDetailsService {
@@ -24,14 +26,17 @@ public class PupilService implements UserDetailsService {
     }
 
 
-    public boolean registerPupil(Pupil pupil) {
+    public boolean registerPupil(Pupil pupil) throws Exception {
         Pupil pupilFromDb = pupilRepo.findByEmail(pupil.getEmail());
-        if (pupilFromDb==null){
-            pupil.setPassword(passwordEncoder.encode(pupil.getPassword()));
-            pupilRepo.save(pupil);
-            return true;
+        if (pupilFromDb!=null){
+            throw new Exception("Something was happened word");
         }
-        return false;
+        pupil.setActive(false);
+        pupil.setActivationCode(UUID.randomUUID().toString());
+        pupil.setPassword(passwordEncoder.encode(pupil.getPassword()));
+        pupil.setRole(Role.PUPIL);
+        pupilRepo.save(pupil);
+        return true;
     }
 
     @Override
