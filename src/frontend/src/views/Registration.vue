@@ -25,29 +25,8 @@
             class="mb-2"
           ></v-text-field>
           <v-row>
-            <v-btn
-              class="mt-9 button"
-              color="#f6f6f6"
-              width="100%"
-              @click="submit"
-              disabled
-            >
-              LOG IN
-            </v-btn>
-          </v-row>
-          <v-row>
-            <v-btn
-              class="button second"
-              color="#f6f6f6"
-              width="100%"
-              @click="registrationPageRout"
-            >
+            <v-btn class="button second" color="#f6f6f6" width="100%">
               create new account
-            </v-btn>
-          </v-row>
-          <v-row class="d-flex justify-center">
-            <v-btn class="button second text-caption" color="error" text
-              >Forgot Password?
             </v-btn>
           </v-row>
         </form>
@@ -59,10 +38,9 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, maxLength, minLength } from "vuelidate/lib/validators";
-import router from "../router";
 
 export default {
-  name: "Main",
+  name: "Registration",
   mixins: [validationMixin],
   validations: {
     login: {
@@ -123,9 +101,6 @@ export default {
     submit() {
       this.$v.$touch();
     },
-    registrationPageRout: function () {
-      router.push({ name: "Registration" });
-    },
   },
 };
 </script>
@@ -140,20 +115,4 @@ export default {
 .small-logo-container {
   height: 55vh;
 }
-/* .logo {
-  position: absolute;
-  width: 104px;
-  height: 104px;
-  left: 128px;
-  top: 260px;
-  background: url(image.png);
-}
-
-.image {
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-} */
 </style>
