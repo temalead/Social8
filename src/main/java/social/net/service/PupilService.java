@@ -1,5 +1,6 @@
 package social.net.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,7 +11,6 @@ import social.net.model.Pupil;
 import social.net.model.Role;
 import social.net.repo.PupilRepo;
 
-import javax.xml.ws.Response;
 import java.util.UUID;
 
 @Service
@@ -18,11 +18,14 @@ public class PupilService implements UserDetailsService {
     private final PupilRepo pupilRepo;
     private final Pupil pupil;
     private final PasswordEncoder passwordEncoder;
+    private final MailService mailService;
 
-    public PupilService(PupilRepo pupilRepo, Pupil pupil, PasswordEncoder passwordEncoder) {
+    @Autowired
+    public PupilService(PupilRepo pupilRepo, Pupil pupil, PasswordEncoder passwordEncoder, MailService mailService) {
         this.pupilRepo = pupilRepo;
         this.pupil = pupil;
         this.passwordEncoder=passwordEncoder;
+        this.mailService = mailService;
     }
 
 
@@ -36,6 +39,8 @@ public class PupilService implements UserDetailsService {
         pupil.setPassword(passwordEncoder.encode(pupil.getPassword()));
         pupil.setRole(Role.PUPIL);
         pupilRepo.save(pupil);
+        mailService.sendEmail(pupil.getEmail(),"Activation Code",
+                mailService.makeMessage(pupil.getActivationCode()));
         return true;
     }
 
@@ -50,5 +55,16 @@ public class PupilService implements UserDetailsService {
             }
         }
         return byLogin;
+    }
+
+    public boolean activate(String code) {
+        Pupil byActivationCode = pupilRepo.findByActivationCode(code);
+        if (byActivationCode!=null){
+            pupil.setActivationCode(null);
+            pupil.setActive(true);
+            pupilRepo.save(pupil);
+            return true;
+        }
+        return false;
     }
 }
