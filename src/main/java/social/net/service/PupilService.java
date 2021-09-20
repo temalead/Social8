@@ -11,7 +11,6 @@ import social.net.model.Pupil;
 import social.net.model.Role;
 import social.net.repo.PupilRepo;
 
-import javax.xml.ws.Response;
 import java.util.UUID;
 
 @Service
@@ -19,25 +18,29 @@ public class PupilService implements UserDetailsService {
     private final PupilRepo pupilRepo;
     private final Pupil pupil;
     private final PasswordEncoder passwordEncoder;
+    private final MailService mailService;
 
     @Autowired
-    public PupilService(PupilRepo pupilRepo, Pupil pupil, PasswordEncoder passwordEncoder) {
+    public PupilService(PupilRepo pupilRepo, Pupil pupil, PasswordEncoder passwordEncoder, MailService mailService) {
         this.pupilRepo = pupilRepo;
         this.pupil = pupil;
         this.passwordEncoder=passwordEncoder;
+        this.mailService = mailService;
     }
 
 
     public boolean registerPupil(Pupil pupil) throws Exception {
         Pupil pupilFromDb = pupilRepo.findByEmail(pupil.getEmail());
         if (pupilFromDb!=null){
-            return false;
+            throw new Exception("Something was happened word");
         }
         pupil.setActive(false);
         pupil.setActivationCode(UUID.randomUUID().toString());
         pupil.setPassword(passwordEncoder.encode(pupil.getPassword()));
         pupil.setRole(Role.PUPIL);
         pupilRepo.save(pupil);
+        mailService.sendEmail(pupil.getEmail(),"Activation Code",
+                mailService.makeMessage(pupil.getActivationCode()));
         return true;
     }
 
@@ -52,5 +55,16 @@ public class PupilService implements UserDetailsService {
             }
         }
         return byLogin;
+    }
+
+    public boolean activate(String code) {
+        Pupil byActivationCode = pupilRepo.findByActivationCode(code);
+        if (byActivationCode!=null){
+            pupil.setActivationCode(null);
+            pupil.setActive(true);
+            pupilRepo.save(pupil);
+            return true;
+        }
+        return false;
     }
 }
