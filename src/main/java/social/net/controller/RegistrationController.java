@@ -16,10 +16,6 @@ public class RegistrationController {
     public RegistrationController(PupilService pupilService) {
         this.pupilService = pupilService;
     }
-    @GetMapping
-    public ResponseEntity getRegistrationPage(){
-        return ResponseEntity.ok().body("Ok!!!");
-    }
     @PostMapping
     public Pupil registrationPost(
             @RequestBody Pupil pupil,

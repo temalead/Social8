@@ -1,5 +1,6 @@
 package social.net.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,6 +20,7 @@ public class PupilService implements UserDetailsService {
     private final Pupil pupil;
     private final PasswordEncoder passwordEncoder;
 
+    @Autowired
     public PupilService(PupilRepo pupilRepo, Pupil pupil, PasswordEncoder passwordEncoder) {
         this.pupilRepo = pupilRepo;
         this.pupil = pupil;
@@ -29,7 +31,7 @@ public class PupilService implements UserDetailsService {
     public boolean registerPupil(Pupil pupil) throws Exception {
         Pupil pupilFromDb = pupilRepo.findByEmail(pupil.getEmail());
         if (pupilFromDb!=null){
-            throw new Exception("Something was happened word");
+            return false;
         }
         pupil.setActive(false);
         pupil.setActivationCode(UUID.randomUUID().toString());
