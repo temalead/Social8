@@ -108,10 +108,11 @@ export default {
       this.$v.$touch();
       fetch("http://localhost:8080/registration", {
         method: "POST",
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
-        body: { login: this.login, password: this.password },
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: { email: this.login, password: this.password },
       });
     },
   },
