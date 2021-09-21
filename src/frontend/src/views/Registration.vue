@@ -5,7 +5,9 @@
     </v-row>
     <v-row>
       <v-col class="ml-4 mr-4">
-        <form>
+        <form method="post">
+          <input type="hidden" name="_token" :value="csrf" />
+
           <v-text-field
             v-model="login"
             :error-messages="loginErrors"
@@ -69,6 +71,7 @@ export default {
   data: () => ({
     login: "",
     password: "",
+    csrf: null,
   }),
 
   computed: {
