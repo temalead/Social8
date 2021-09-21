@@ -25,27 +25,27 @@
             @blur="$v.password.$touch()"
             class="mb-2"
           ></v-text-field>
-          <v-row>
-            <v-btn
-              class="mt-9 button"
-              color="#f6f6f6"
-              width="100%"
-              @click="submit"
-              disabled
-            >
-              LOG IN
-            </v-btn>
-          </v-row>
-          <v-row>
-            <v-btn
-              class="button second"
-              color="#f6f6f6"
-              width="100%"
-              @click="registrationPageRout"
-            >
-              create new account
-            </v-btn>
-          </v-row>
+          <!-- <v-row> -->
+          <v-btn
+            class="mt-9 button"
+            color="#f6f6f6"
+            width="100%"
+            @click="submit"
+            disabled
+          >
+            LOG IN
+          </v-btn>
+          <!-- </v-row> -->
+          <!-- <v-row> -->
+          <v-btn
+            class="button second"
+            color="#f6f6f6"
+            width="100%"
+            @click="registrationPageRout"
+          >
+            create new account
+          </v-btn>
+          <!-- </v-row> -->
           <v-row class="d-flex justify-center">
             <v-btn class="button second text-caption" color="error" text
               >Forgot Password?

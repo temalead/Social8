@@ -4,14 +4,14 @@
       <div class="small-logo-container">LOGO</div>
     </v-row>
     <v-row>
-      <v-col class="ml-4 mr-4">
+      <v-col class="ml-4 mr-4 px-0">
         <form method="post">
           <input type="hidden" name="_token" :value="csrf" />
 
           <v-text-field
             v-model="login"
             :error-messages="loginErrors"
-            :counter="30"
+            :counter="50"
             label="Phone number or email"
             required
             @input="$v.login.$touch()"
@@ -26,11 +26,14 @@
             @blur="$v.password.$touch()"
             class="mb-2"
           ></v-text-field>
-          <v-row>
-            <v-btn class="button second" color="#f6f6f6" width="100%">
-              create new account
-            </v-btn>
-          </v-row>
+          <v-btn
+            class="px-0 button second"
+            color="#f6f6f6"
+            width="100%"
+            @click="submit"
+          >
+            create new account
+          </v-btn>
         </form>
       </v-col>
     </v-row>
@@ -103,6 +106,13 @@ export default {
   methods: {
     submit() {
       this.$v.$touch();
+      fetch("http://localhost:8080/registration", {
+        method: "POST",
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+        body: { login: this.login, password: this.password },
+      });
     },
   },
 };
