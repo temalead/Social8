@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import social.net.model.Pupil;
 import social.net.model.Role;
 import social.net.repo.PupilRepo;
+import sun.misc.Cache;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -30,9 +32,9 @@ public class PupilService implements UserDetailsService {
 
 
     public boolean registerPupil(Pupil pupil) throws Exception {
-        Pupil pupilFromDb = pupilRepo.findByEmail(pupil.getEmail());
-        if (pupilFromDb!=null){
-            throw new Exception("Something was happened word");
+        Optional<Pupil> pupilFromDb = Optional.ofNullable(pupilRepo.findByEmail(pupil.getEmail()));
+        if (pupilFromDb.isPresent()){
+            throw new Exception(String.format("User with %s was already created",pupil.getEmail()));
         }
         pupil.setActive(false);
         pupil.setActivationCode(UUID.randomUUID().toString());
@@ -46,20 +48,17 @@ public class PupilService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Pupil byLogin = pupilRepo.findByEmail(s);
-        if (byLogin ==null){
-            try {
-                throw new Exception("User not found");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        Optional<Pupil> pupilByEmailOpt = Optional.ofNullable(pupilRepo.findByEmail(s));
+        if (pupilByEmailOpt.isPresent()){
+            return pupilByEmailOpt.get();
         }
-        return byLogin;
+        throw new RuntimeException("User not found");
+
     }
 
     public boolean activate(String code) {
-        Pupil byActivationCode = pupilRepo.findByActivationCode(code);
-        if (byActivationCode!=null){
+        Optional<Pupil> byActivationCode = Optional.ofNullable(pupilRepo.findByActivationCode(code));
+        if (byActivationCode.isPresent()){
             pupil.setActivationCode(null);
             pupil.setActive(true);
             pupilRepo.save(pupil);
