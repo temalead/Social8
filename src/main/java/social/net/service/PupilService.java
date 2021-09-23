@@ -23,7 +23,7 @@ public class PupilService implements UserDetailsService {
     private final MailService mailService;
 
     @Autowired
-    public PupilService(PupilRepo pupilRepo, Pupil pupil, PasswordEncoder passwordEncoder, MailService mailService, Cache cache) {
+    public PupilService(PupilRepo pupilRepo, Pupil pupil, PasswordEncoder passwordEncoder, MailService mailService) {
         this.pupilRepo = pupilRepo;
         this.pupil = pupil;
         this.passwordEncoder=passwordEncoder;
