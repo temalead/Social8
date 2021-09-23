@@ -1,6 +1,8 @@
 package social.net.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,18 +23,15 @@ public class RegistrationController {
         this.pupilService = pupilService;
     }
     @PostMapping
-    public Pupil registrationPost(
-            Model model,
+    public ResponseEntity<Pupil> registrationPost(
             @RequestBody Pupil pupil,
             HttpServletResponse response
             ) throws Exception {
         if (!pupilService.registerPupil(pupil)){
-            model.addAttribute("Something was wrong");
-            response.sendRedirect("/registration");
-            return pupil;
+            return new ResponseEntity(HttpStatus.I_AM_A_TEAPOT);
         }
         response.sendRedirect("/");
-        return pupil;
+        return new ResponseEntity(pupil, HttpStatus.OK);
     }
 
     @GetMapping("/activate/{code}")

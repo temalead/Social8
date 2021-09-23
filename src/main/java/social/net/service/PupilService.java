@@ -33,8 +33,8 @@ public class PupilService implements UserDetailsService {
 
     public boolean registerPupil(Pupil pupil) throws Exception {
         Optional<Pupil> pupilFromDb = Optional.ofNullable(pupilRepo.findByEmail(pupil.getEmail()));
-        if (!pupilFromDb.isPresent()){
-            throw new Exception("Something was happened word");
+        if (pupilFromDb.isPresent()){
+            throw new Exception(String.format("User with %s was already created",pupil.getEmail()));
         }
         pupil.setActive(false);
         pupil.setActivationCode(UUID.randomUUID().toString());
