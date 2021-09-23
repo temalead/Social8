@@ -109,38 +109,14 @@ export default {
   methods: {
     submit() {
       this.$v.$touch();
-      // registrationApi
-      //   .save({ email: this.email, password: this.password })
-      //   .then((response) => {
-      //     console.log(response);
-      //   });
-      // axios.post("http:localhost:8080/registration");
-      // axios({
-      //   method: "post",
-      //   // url: "http://localhost:8080/registration",
-      //   proxy: {
-      //     protocol: "http",
-      //     host: "localhost",
-      //     port: 8080,
-      //     // auth: {
-      //     //   username: "mikeymike",
-      //     //   password: "rapunz3l",
-      //     // },
-      //   },
-      //   headers: { "content-type": "application/json" },
-      //   // params: { mode: "no-cors" },
-      //   data: {
-      //     email: this.login,
-      //     password: this.password,
-      //   },
-      // });
       fetch("http://localhost:8080/registration", {
         method: "POST",
         mode: "no-cors",
         headers: {
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: { email: this.login, password: this.password },
+        body: JSON.stringify({ email: this.login, password: this.password }),
       });
     },
   },
