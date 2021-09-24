@@ -1,6 +1,7 @@
 package social.net.model;
 
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,11 +24,14 @@ public class Pupil implements UserDetails {
     private String firstName;
     private String LastName;
 
+    @JsonView(View.MessageRegistration.class)
     private String password;
     @Email
+    @JsonView(View.MessageRegistration.class)
     private String email;
     private boolean active;
 
+    @JsonView(View.MessageRegistration.class)
     private String activationCode;
 
     @ManyToOne
