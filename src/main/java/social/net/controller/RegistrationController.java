@@ -1,5 +1,6 @@
 package social.net.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import social.net.model.Pupil;
+import social.net.model.View;
 import social.net.service.PupilService;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +25,7 @@ public class RegistrationController {
         this.pupilService = pupilService;
     }
     @PostMapping
+    @JsonView(View.MessageRegistration.class)
     public ResponseEntity<Pupil> registrationPost(
             @RequestBody Pupil pupil,
             HttpServletResponse response
@@ -30,7 +33,6 @@ public class RegistrationController {
         if (!pupilService.registerPupil(pupil)){
             return new ResponseEntity(HttpStatus.I_AM_A_TEAPOT);
         }
-        response.sendRedirect("/");
         return new ResponseEntity(pupil, HttpStatus.OK);
     }
 
