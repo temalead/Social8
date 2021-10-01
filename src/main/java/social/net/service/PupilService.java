@@ -1,5 +1,7 @@
 package social.net.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,6 +23,7 @@ public class PupilService implements UserDetailsService {
     private final Pupil pupil;
     private final PasswordEncoder passwordEncoder;
     private final MailService mailService;
+    private static final Logger logger= LoggerFactory.getLogger(PupilService.class);
 
     @Autowired
     public PupilService(PupilRepo pupilRepo, Pupil pupil, PasswordEncoder passwordEncoder, MailService mailService) {
@@ -34,6 +37,7 @@ public class PupilService implements UserDetailsService {
     public boolean registerPupil(Pupil pupil) throws Exception {
         Optional<Pupil> pupilFromDb = Optional.ofNullable(pupilRepo.findByEmail(pupil.getEmail()));
         if (pupilFromDb.isPresent()){
+            logger.error(String.valueOf(new RuntimeException()),"User was already created");
             throw new Exception(String.format("User with %s was already created",pupil.getEmail()));
         }
         pupil.setActive(false);
@@ -52,6 +56,7 @@ public class PupilService implements UserDetailsService {
         if (pupilByEmailOpt.isPresent()){
             return pupilByEmailOpt.get();
         }
+        logger.error(String.valueOf(new RuntimeException()),"User not found");
         throw new RuntimeException("User not found");
 
     }
