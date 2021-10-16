@@ -8,11 +8,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import social.net.model.Pupil;
 import social.net.model.Role;
 import social.net.repo.PupilRepo;
-import sun.misc.Cache;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -25,7 +23,7 @@ public class PupilService implements UserDetailsService {
     private final MailService mailService;
     private static final Logger logger= LoggerFactory.getLogger(PupilService.class);
 
-    @Autowired
+
     public PupilService(PupilRepo pupilRepo, Pupil pupil, PasswordEncoder passwordEncoder, MailService mailService) {
         this.pupilRepo = pupilRepo;
         this.pupil = pupil;
@@ -58,7 +56,6 @@ public class PupilService implements UserDetailsService {
         }
         logger.error(String.valueOf(new RuntimeException()),"User not found");
         throw new RuntimeException("User not found");
-
     }
 
     public boolean activate(String code) {
@@ -67,8 +64,27 @@ public class PupilService implements UserDetailsService {
             pupil.setActivationCode(null);
             pupil.setActive(true);
             pupilRepo.save(pupil);
+            logger.info("Activation user");
             return true;
         }
         return false;
+    }
+
+    public boolean update(Pupil old, Pupil pupil) {
+        if (old.equals(pupil)){
+            return false;
+        }
+        else{
+            if (!old.getFirstName().equals(pupil.getFirstName())){
+                old.setFirstName(pupil.getFirstName());
+            }
+            if (!old.getLastName().equals(pupil.getLastName())){
+                old.setLastName(pupil.getLastName());
+            }
+            if (!old.getStudyClass().equals(pupil.getStudyClass())){
+                old.setStudyClass(pupil.getStudyClass());
+            }
+            return true;
+        }
     }
 }
