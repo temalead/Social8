@@ -17,8 +17,8 @@ spring:
 
   mail:
     host: smtp.googlemail.com
-    username: semasuperstar2013@gmail.com
-    password: wrz2304a
+    username: ENC(Mnz6k34La2Xaz8fDwA5wJkw8I9KJMFnQ0HkXdRaVaHyW6XEN6h9Vpw==)
+    password: ENC(XsqdLPQhwCFctKdPyapRjtppe8NhKjwV)
     port: 465
     protocol: smtps
     properties:
