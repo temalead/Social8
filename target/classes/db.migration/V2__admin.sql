@@ -1,0 +1,1 @@
+insert into  pupil(first_name,login,password) values ('admin','itdetectiv@gmail.com',${admin.password})

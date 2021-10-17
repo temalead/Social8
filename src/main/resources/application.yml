@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    password: ${SPRING_DATASOURCE_PASSWORD:3c83b0637c04eb2d5bc9336f55779493e4df208a884fdd039f57d7bc076aade9}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://ec2-54-195-195-81.eu-west-1.compute.amazonaws.com:5432/d4quoji7p16gre?user=xabisxpkxeaqkc&password=3c83b0637c04eb2d5bc9336f55779493e4df208a884fdd039f57d7bc076aade9&sslmode=require}
+    username: ${SPRING_DATASOURCE_USERNAME:xabisxpkxeaqkc}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+
+  mail:
+    host: smtp.googlemail.com
+    username: semasuperstar2013@gmail.com
+    password: wrz2304a
+    port: 465
+    protocol: smtps
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+mail:
+  debug:true
+
+server:
+  port: 8080
+
+activation:
+  address: http://localhost:8080/registration/activate/
