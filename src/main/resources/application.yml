@@ -36,3 +36,6 @@ server:
 
 activation:
   address: http://localhost:8080/registration/activate/
+
+access:
+  token: ENC(qLgw+js73Wt7+QqJAyg4FdtvRHU4KoA+fEtRT0cYjtOJE5oOuSsjCLVgAGZJJGCEFYXGto46rtcc6GzG7pqv6k3MFHt5SrpXmepK/RlJNW0cp1PJHRm1BVGObQP24xdG)
