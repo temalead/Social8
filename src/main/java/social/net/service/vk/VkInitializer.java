@@ -3,17 +3,13 @@ package social.net.service.vk;
 import com.vk.api.sdk.client.TransportClient;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.UserActor;
+import com.vk.api.sdk.exceptions.ApiException;
+import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
-import com.vk.api.sdk.queries.users.UsersGetQuery;
+import com.vk.api.sdk.objects.users.responses.SearchResponse;
 import com.vk.api.sdk.streaming.clients.VkStreamingApiClient;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 
-@PropertySource(value = "classpath:application.properties")
-@Component
-@ConfigurationProperties(prefix = "access")
 public class VkInitializer {
     @Value("${access.token}")
     private String token;
@@ -23,13 +19,12 @@ public class VkInitializer {
     VkStreamingApiClient streamingClient = new VkStreamingApiClient(transportClient);
 
     //Create service actor
-    Integer appId = -175711177;
+    Integer appId = 7978813;
     UserActor actor = new UserActor(appId, token);
 
-    public void getActor() {
-        UsersGetQuery usersGetQuery = vk.users().get(actor);
-        UsersGetQuery fields = usersGetQuery.fields();
-        System.out.println(fields);
+    public SearchResponse getActor() throws ClientException, ApiException {
+        SearchResponse execute = vk.users().search(actor).school(226069).count(1000).execute();
+        return execute;
     }
 
 }
