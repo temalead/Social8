@@ -2,6 +2,7 @@ package social.net.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,6 +17,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("registration")
+@ConfigurationProperties(prefix = "activation.address")
 public class RegistrationController {
     private final PupilService pupilService;
     @Value("${activation.address}")

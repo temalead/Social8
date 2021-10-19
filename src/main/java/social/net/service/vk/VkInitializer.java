@@ -2,20 +2,21 @@ package social.net.service.vk;
 
 import com.vk.api.sdk.client.TransportClient;
 import com.vk.api.sdk.client.VkApiClient;
-import com.vk.api.sdk.client.actors.ServiceActor;
 import com.vk.api.sdk.client.actors.UserActor;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
-import com.vk.api.sdk.objects.streaming.responses.GetServerUrlResponse;
-import com.vk.api.sdk.queries.groups.GroupsGetQuery;
 import com.vk.api.sdk.queries.users.UsersGetQuery;
 import com.vk.api.sdk.streaming.clients.VkStreamingApiClient;
-import com.vk.api.sdk.streaming.clients.actors.StreamingActor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+@PropertySource(value = "classpath:application.properties")
+@Component
+@ConfigurationProperties(prefix = "access")
 public class VkInitializer {
     @Value("${access.token}")
-    private String accessToken;
+    private String token;
     TransportClient transportClient = new HttpTransportClient();
 
     VkApiClient vk = new VkApiClient(transportClient);
@@ -23,7 +24,7 @@ public class VkInitializer {
 
     //Create service actor
     Integer appId = -175711177;
-    UserActor actor = new UserActor(appId, accessToken);
+    UserActor actor = new UserActor(appId, token);
 
     public void getActor() {
         UsersGetQuery usersGetQuery = vk.users().get(actor);

@@ -1,12 +1,14 @@
 package social.net.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
+@PropertySource(value = "classpath:application.properties")
 public class MailService {
     private final JavaMailSender javaMailSender;
 

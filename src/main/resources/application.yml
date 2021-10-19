@@ -13,8 +13,6 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-
-
   mail:
     host: smtp.googlemail.com
     username: ENC(Mnz6k34La2Xaz8fDwA5wJkw8I9KJMFnQ0HkXdRaVaHyW6XEN6h9Vpw==)
@@ -27,15 +25,12 @@ spring:
           auth: true
           starttls:
             enable: true
-
 mail:
   debug:true
 
 server:
   port: 8080
 
-activation:
-  address: http://localhost:8080/registration/activate/
-
-access:
-  token: ENC(qLgw+js73Wt7+QqJAyg4FdtvRHU4KoA+fEtRT0cYjtOJE5oOuSsjCLVgAGZJJGCEFYXGto46rtcc6GzG7pqv6k3MFHt5SrpXmepK/RlJNW0cp1PJHRm1BVGObQP24xdG)
+activation.address:
+  http://localhost:8080/registration/activate/
+access.token: ENC(qLgw+js73Wt7+QqJAyg4FdtvRHU4KoA+fEtRT0cYjtOJE5oOuSsjCLVgAGZJJGCEFYXGto46rtcc6GzG7pqv6k3MFHt5SrpXmepK/RlJNW0cp1PJHRm1BVGObQP24xdG)
