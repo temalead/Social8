@@ -1,0 +1,15 @@
+{
+  "properties": [
+    {
+      "name": "activation.address",
+      "type": "java.lang.String",
+      "description": "Description for activation.address.",
+      "defaultValue": "http://localhost:8080/registration/activate/"
+    },
+    {
+      "name": "access.token",
+      "type": "java.lang.String",
+      "description": "Description for access.token.",
+      "defaultValue": "ENC(qLgw+js73Wt7+QqJAyg4FdtvRHU4KoA+fEtRT0cYjtOJE5oOuSsjCLVgAGZJJGCEFYXGto46rtcc6GzG7pqv6k3MFHt5SrpXmepK/RlJNW0cp1PJHRm1BVGObQP24xdG)"
+    }
+  ] }
