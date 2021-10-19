@@ -14,7 +14,5 @@ import social.net.service.vk.VkInitializer;
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class,args);
-        VkInitializer vkInitializer = new VkInitializer();
-        vkInitializer.getActor();
     }
 }
