@@ -6,14 +6,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import social.net.repo.PupilRepo;
 
+import javax.annotation.PostConstruct;
+
 @Component
 public class VkInitializer {
     @Value("${access.token}")
     private String token;
     private Integer appId = 7978813;
-    private UserActor actor = new UserActor(appId, token);
+    private UserActor actor;
 
-
+    @PostConstruct
+    public void init(){
+        actor=new UserActor(appId,token);
+    }
     public  int getSchool() {
         return 226069;
     }

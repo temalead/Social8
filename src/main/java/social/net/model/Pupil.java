@@ -2,6 +2,7 @@ package social.net.model;
 
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,8 +21,11 @@ import java.util.Set;
 public class Pupil implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SerializedName("id")
     private Long id;
+    @SerializedName("first_name")
     private String firstName;
+    @SerializedName("last_name")
     private String LastName;
 
     @JsonView(View.MessageRegistration.class)
