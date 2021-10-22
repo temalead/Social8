@@ -21,8 +21,10 @@ import java.util.Set;
 public class Pupil implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SerializedName("id")
     private Long id;
+
+    private Integer vkId;
+
     @SerializedName("first_name")
     private String firstName;
     @SerializedName("last_name")
@@ -148,5 +150,13 @@ public class Pupil implements UserDetails {
 
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
+    }
+
+    public Integer getVkId() {
+        return vkId;
+    }
+
+    public void setVkId(Integer vkId) {
+        this.vkId = vkId;
     }
 }

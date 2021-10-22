@@ -8,4 +8,6 @@ public interface PupilRepo extends JpaRepository<Pupil,Long> {
     Pupil findByEmail(String login);
 
     Pupil findByActivationCode(String code);
+    Pupil findByVkId(Integer id);
+
 }

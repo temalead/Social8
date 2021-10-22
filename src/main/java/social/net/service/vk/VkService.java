@@ -41,25 +41,23 @@ public class VkService {
     }
 
     public void getPupilFromJson() throws ClientException, ApiException {
-        if (!isNotPupilPresent()){
+        if (!isPupilPresent()){
             List<UserFull> pupils = getAllPupilsFromSchool();
             GsonBuilder gsonBuilder = new GsonBuilder();
             Gson gson = gsonBuilder.create();
             for (UserFull pupil : pupils) {
                 Pupil pupilToDb = gson.fromJson(String.valueOf(pupil), Pupil.class);
-                logger.info("Id pupil is "+pupilToDb.getId()+"\nAnd his name is "+pupilToDb.getFirstName());
+                pupilToDb.setVkId(pupil.getId());
                 pupilRepo.save(pupilToDb);
+                logger.info("Id pupil is "+pupilToDb.getId()+"\nAnd his name is "+pupilToDb.getFirstName());
             }
         }
     }
 
-    private boolean isNotPupilPresent() throws ClientException, ApiException {
+    private boolean isPupilPresent() throws ClientException, ApiException {
         List<UserFull> pupilFromSchool = getAllPupilsFromSchool();
         for (UserFull pupil : pupilFromSchool) {
-            Optional<Pupil> pupilFromDb = pupilRepo.findById(Long.valueOf(pupil.getId()));
-            if (pupilFromDb.isPresent()){
-                return false;
-            }
+            return pupilRepo.findByVkId(pupil.getId()) != null;
         }
         return true;
     }
