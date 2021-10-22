@@ -1,10 +1,8 @@
 package social.net.service.vk;
 
 import com.vk.api.sdk.client.actors.UserActor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import social.net.repo.PupilRepo;
 
 import javax.annotation.PostConstruct;
 
@@ -24,7 +22,7 @@ public class VkInitializer {
     }
 
     public  int getCount() {
-        return 1000;
+        return 500;
     }
 
     public String getToken() {
